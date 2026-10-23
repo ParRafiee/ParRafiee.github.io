@@ -178,6 +178,57 @@
             </div>
           </div>
         </article>
+        <article class="project reveal">
+          <figure class="project-figure">
+            <div class="chart">
+              <div class="chart-title">Curved change, fitted with a straight line</div>
+              <svg class="illus" viewBox="0 0 420 200" role="img" aria-label="Illustration: an accelerating trajectory measured at four occasions, with later observations missing, and a straight-line fit that misses the curvature">
+                <line class="grid" x1="40" x2="410" y1="170" y2="170"/>
+                <text class="tick" x="210" y="194" text-anchor="middle">Time</text>
+                <text class="tick" x="28" y="95" text-anchor="middle" transform="rotate(-90 28 95)">Outcome</text>
+                <path class="ill-true" d="M80,155 C114,153 149,152 183,148 S252,135 286,118 S356,80 390,45"/>
+                <path class="ill-fit" d="M80,160 L390,104"/>
+                <circle class="ill-obs" cx="80" cy="155" r="6"/>
+                <circle class="ill-obs" cx="183" cy="148" r="6"/>
+                <circle class="ill-miss" cx="286" cy="118" r="6"/>
+                <circle class="ill-miss" cx="390" cy="45" r="6"/>
+                <text class="lab lab-accent" x="330" y="52" text-anchor="end">True quadratic change</text>
+                <text class="lab" x="398" y="128" text-anchor="end">Straight-line fit</text>
+              </svg>
+            </div>
+            <div class="chart">
+              <div class="chart-title">Two forms of covariate-dependent dropout</div>
+              <svg class="illus" viewBox="0 0 420 200" role="img" aria-label="Illustration: probability of dropout rising steadily with a covariate (linear) or rising at both extremes of the covariate (convex)">
+                <line class="grid" x1="40" x2="410" y1="170" y2="170"/>
+                <line class="grid" x1="40" x2="410" y1="20" y2="20"/>
+                <text class="tick" x="34" y="174" text-anchor="end">0</text>
+                <text class="tick" x="34" y="24" text-anchor="end">1</text>
+                <text class="tick" x="225" y="194" text-anchor="middle">Person-level covariate</text>
+                <path class="ill-cvx" d="M40.0,20.0 L52.3,20.0 L64.7,32.0 L77.0,83.5 L89.3,117.5 L101.7,139.0 L114.0,152.1 L126.3,159.7 L138.7,163.7 L151.0,165.7 L163.3,166.6 L175.7,166.9 L188.0,167.0 L262.0,167.0 L274.3,166.9 L286.7,166.6 L299.0,165.7 L311.3,163.7 L323.7,159.7 L336.0,152.1 L348.3,139.0 L360.7,117.5 L373.0,83.5 L385.3,32.0 L397.7,20.0 L410.0,20.0"/>
+                <path class="ill-lin" d="M40.0,170.0 L188.0,168.8 L200.3,167.8 L212.7,166.0 L225.0,162.9 L237.3,157.5 L249.7,148.7 L262.0,135.3 L274.3,116.8 L286.7,95.0 L299.0,73.2 L311.3,54.7 L323.7,41.3 L336.0,32.5 L348.3,27.1 L360.7,24.0 L373.0,22.2 L385.3,21.2 L410.0,20.4"/>
+                <text class="lab lab-accent" x="296" y="122" text-anchor="start">Linear</text>
+                <text class="lab" x="106" y="112" text-anchor="start">Convex</text>
+                <text class="tick" x="16" y="95" text-anchor="middle" transform="rotate(-90 16 95)">P(dropout)</text>
+              </svg>
+            </div>
+            <figcaption>Conceptual illustrations, not simulation results. Top: when growth is curved and later observations are missing, a straight-line model misrepresents change. Bottom: dropout that rises steadily with a covariate (linear) or at both extremes (convex).</figcaption>
+          </figure>
+
+          <div class="project-text">
+            <span class="project-tag">Conference poster · M³ 2026</span>
+            <h3>Choosing a growth model when dropout depends on who participants are</h3>
+            <p class="project-question">Straight-line growth models are the default for estimating how a person-level characteristic relates to change over time. Do they still give accurate answers when change is curved and dropout depends on that characteristic?</p>
+            <p>In a Monte Carlo study, we estimated the effect of a continuous covariate on each person's average rate of change under covariate-dependent missingness. We compared a straight-line model with three quadratic growth models (fixed, random, and random with a second covariate), all estimated with REML in SAS PROC MIXED.</p>
+            <p class="project-finding"><strong>Key finding:</strong> When growth was quadratic and data were missing, the default straight-line model was underfitted and produced substantial bias. The random quadratic model that included the second covariate performed best overall. Our recommendation: a fixed quadratic model for 3-wave data and a random quadratic model for 4 or more waves.</p>
+            <dl class="project-stats">
+              <div><dt>7</dt><dd>simulation factors</dd></div>
+              <div><dt>1,000</dt><dd>replications per condition</dd></div>
+              <div><dt>4</dt><dd>growth models compared</dd></div>
+            </dl>
+            <ul class="chips chips-light"><li>Growth curve models</li><li>Mixed models (SAS)</li><li>REML</li><li>Missing data</li><li>Monte Carlo simulation</li></ul>
+            <p class="project-note">An early version of my dissertation research, which has since been substantially extended.</p>
+          </div>
+        </article>
       </div>
     </section>
 
