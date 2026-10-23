@@ -379,3 +379,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .illus .lab { fill: var(--text-2); font-size: 12px; font-weight: 600; font-family: var(--font); }
 .illus .lab-accent { fill: var(--text); }
 .project-text .project-note { font-size: 14px; font-style: italic; margin-top: 16px; }
+.illus .tr { fill: none; stroke-width: 2.2; stroke-linecap: round; }
+.illus .tr-hi { stroke: var(--m-bcov); }
+.illus .tr-lo { stroke: var(--m-fiml); }
+.illus .tr-miss { stroke-dasharray: 5 6; opacity: .7; }
+.illus .pt { stroke-width: 2; }
+.illus .pt-obs.pt-hi { fill: var(--m-bcov); stroke: var(--bg-alt); }
+.illus .pt-obs.pt-lo { fill: var(--m-fiml); stroke: var(--bg-alt); }
+.illus .pt-miss { fill: var(--bg-alt); stroke: var(--m-bcov); }
+.illus .ann { fill: none; stroke: var(--text-2); stroke-width: 1.2; }
+.chart-legend .ln { width: 18px; height: 0; border-top: 2px solid var(--text-2); display: inline-block; }
+.chart-legend .ln-miss { border-top-style: dashed; }
