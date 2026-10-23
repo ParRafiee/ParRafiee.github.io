@@ -23,6 +23,7 @@
       <nav class="nav-links" id="navLinks">
         <a href="#about">About</a>
         <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
         <a href="#publications">Publications</a>
         <a href="#talks">Presentations</a>
@@ -119,6 +120,64 @@
             <p>Bayesian estimation and Monte Carlo studies to evaluate estimator performance under small samples, missing data, and model misspecification.</p>
           </article>
         </div>
+      </div>
+    </section>
+
+    <!-- Featured projects -->
+    <section class="section" id="projects">
+      <div class="container">
+        <p class="eyebrow reveal">Featured Projects</p>
+        <h2 class="section-title reveal">Selected research, up close.</h2>
+
+        <article class="project reveal">
+          <figure class="project-figure">
+            <div class="chart-legend" aria-hidden="true">
+              <span><i class="sw sw-bcov"></i>B-Cov (proposed)</span>
+              <span><i class="sw sw-fiml"></i>FIML</span>
+              <span><i class="sw sw-breg"></i>B-Reg</span>
+            </div>
+            <div class="chart-panels">
+              <div class="chart" data-chart="conv" data-title="Convergence rate" aria-label="Bar chart of convergence rate by sample size and method"></div>
+              <div class="chart" data-chart="mse" data-title="Mean squared error (lower is better)" aria-label="Bar chart of mean squared error by sample size and method"></div>
+            </div>
+            <figcaption>Estimating the change-on-change effect with serially correlated (AR[1]) measurement error, higher error variance, and 5 measurement occasions. Source: Rafiee, Pauley, &amp; Yang (2026), Table 1.</figcaption>
+            <details class="chart-table">
+              <summary>View data</summary>
+              <table>
+                <thead><tr><th>N</th><th>Method</th><th>Convergence</th><th>MSE</th></tr></thead>
+                <tbody>
+                  <tr><td>50</td><td>B-Cov</td><td>94%</td><td>0.09</td></tr>
+                  <tr><td>50</td><td>FIML</td><td>37%</td><td>0.45</td></tr>
+                  <tr><td>50</td><td>B-Reg</td><td>85%</td><td>0.81</td></tr>
+                  <tr><td>100</td><td>B-Cov</td><td>97%</td><td>0.08</td></tr>
+                  <tr><td>100</td><td>FIML</td><td>45%</td><td>0.88</td></tr>
+                  <tr><td>100</td><td>B-Reg</td><td>93%</td><td>0.18</td></tr>
+                  <tr><td>200</td><td>B-Cov</td><td>96%</td><td>0.06</td></tr>
+                  <tr><td>200</td><td>FIML</td><td>52%</td><td>1.74</td></tr>
+                  <tr><td>200</td><td>B-Reg</td><td>93%</td><td>0.11</td></tr>
+                </tbody>
+              </table>
+            </details>
+          </figure>
+
+          <div class="project-text">
+            <span class="project-tag">Published · Structural Equation Modeling, 2026</span>
+            <h3>Estimating change-on-change with small samples, noisy measures, and missing data</h3>
+            <p class="project-question">When two processes change together over time, such as sleep problems and cognitive performance, how reliably can we estimate whether change in one predicts change in the other?</p>
+            <p>We compared full information maximum likelihood (FIML) with two Bayesian specifications of the cross-domain latent growth curve model, including a covariance-based approach (B-Cov) that we proposed. Sample size, number of measurement occasions, measurement error, error structure, and missing data were varied in a Monte Carlo study.</p>
+            <p class="project-finding"><strong>Key finding:</strong> B-Cov was the most robust method, with convergence above 90% and the lowest mean squared error in nearly every condition. FIML, the default in most software, often failed to converge or gave unstable estimates when reliability was low, even with 200 participants.</p>
+            <dl class="project-stats">
+              <div><dt>144</dt><dd>simulation conditions</dd></div>
+              <div><dt>360K</dt><dd>simulated datasets</dd></div>
+              <div><dt>&gt;90%</dt><dd>B-Cov convergence</dd></div>
+            </dl>
+            <ul class="chips chips-light"><li>Latent growth curves</li><li>Bayesian (Stan)</li><li>FIML (lavaan)</li><li>Missing data</li><li>Monte Carlo simulation</li></ul>
+            <div class="project-links">
+              <a class="btn btn-link" href="https://doi.org/10.1080/10705511.2025.2597293" target="_blank" rel="noopener">Read the paper <span aria-hidden="true">›</span></a>
+              <a class="btn btn-link" href="https://doi.org/10.1080/00273171.2025.2443364" target="_blank" rel="noopener">MBR abstract <span aria-hidden="true">›</span></a>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
