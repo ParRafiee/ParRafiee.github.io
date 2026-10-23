@@ -407,13 +407,18 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .project-role strong { color: var(--text); }
 @media (max-width: 480px) { .findings { grid-template-columns: 1fr; } }
 
-/* Coefficient plots */
-.forest + .forest { margin-top: 22px; }
-.forest .zero { stroke: var(--text-2); stroke-width: 1.2; }
-.forest .ci { stroke: var(--m-fiml); stroke-width: 2; stroke-linecap: round; }
-.forest .ci.sig { stroke: var(--m-bcov); }
-.forest .est { fill: var(--bg-alt); stroke: var(--m-fiml); stroke-width: 2; }
-.forest .est.sig { fill: var(--m-bcov); stroke: var(--m-bcov); }
-.forest .rowlab { fill: var(--text); }
-.forest .grp { fill: var(--text-2); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; font-family: var(--font); }
-.sw-hollow { background: transparent; border: 2px solid var(--m-fiml); width: 10px; height: 10px; box-sizing: border-box; border-radius: 50%; }
+
+/* EMA illustration */
+.ema-illus .ln-b, .ema-illus .ln-a { fill: none; stroke-width: 2.2; stroke-linecap: round; }
+.ema-illus .ln-b { stroke: var(--m-bcov); }
+.ema-illus .ln-a { stroke: var(--m-fiml); }
+.ema-illus .avg { stroke-width: 1.4; stroke-dasharray: 5 5; }
+.ema-illus .avg-b { stroke: var(--m-bcov); opacity: .6; }
+.ema-illus .avg-a { stroke: var(--m-fiml); opacity: .8; }
+.ema-illus .ev { stroke: var(--bg-alt); stroke-width: 2; }
+.ema-illus .ev-b { fill: var(--m-bcov); }
+.ema-illus .ev-a { fill: var(--m-fiml); }
+.ema-illus .evlab { fill: var(--text); font-size: 11px; font-weight: 600; font-family: var(--font); }
+.ema-illus .brk { fill: none; stroke: var(--text-2); stroke-width: 1.2; }
+.ema-illus .brk-lab { fill: var(--text-2); font-weight: 500; }
+.findings-col p { font-size: 14px; line-height: 1.45; color: var(--text); margin: 0; }
