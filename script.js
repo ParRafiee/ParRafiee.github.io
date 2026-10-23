@@ -131,3 +131,69 @@ document.querySelectorAll('.chart[data-chart]').forEach((el) => {
   });
   el.appendChild(svg);
 });
+
+// EMA project: coefficient plots (estimate + 95% CI), filled when p < .05.
+const FOREST_ROWS = ['Home', 'Work/school', 'Party', 'Restaurant/bar', 'Alone', 'Partner', 'Friend', 'Family'];
+const FOREST_DATA = {
+  within: { range: [-0.12, 0.08], ticks: [-0.1, -0.05, 0, 0.05], digits: 3, rows: [
+    [-0.079, -0.101, -0.056, '<.001'], [-0.027, -0.053, -0.001, '.042'], [0.020, -0.029, 0.068, '.422'], [-0.007, -0.051, 0.037, '.766'],
+    [-0.088, -0.112, -0.064, '<.001'], [-0.009, -0.040, 0.021, '.539'], [0.002, -0.026, 0.029, '.905'], [-0.031, -0.062, -0.000, '.050']] },
+  between: { range: [-1.6, 2.2], ticks: [-1, 0, 1, 2], digits: 2, rows: [
+    [0.317, -0.037, 0.670, '.083'], [0.242, -0.120, 0.603, '.194'], [1.147, 0.221, 2.073, '.017'], [-0.425, -1.472, 0.623, '.429'],
+    [0.178, -0.136, 0.492, '.269'], [0.235, -0.149, 0.618, '.234'], [0.197, -0.150, 0.544, '.270'], [0.058, -0.354, 0.471, '.782']] },
+};
+
+document.querySelectorAll('.chart[data-forest]').forEach((el) => {
+  const spec = FOREST_DATA[el.dataset.forest];
+  const W = 420, L = 112, R = 10, T = 8, rowH = 21, groupGap = 14;
+  const H = T + rowH * 8 + groupGap + 26;
+  const [lo, hi] = spec.range;
+  const x = (v) => L + ((v - lo) / (hi - lo)) * (W - L - R);
+  const rowY = (i) => T + rowH * i + rowH / 2 + (i >= 4 ? groupGap : 0);
+  const ns = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs) => { const n = document.createElementNS(ns, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); return n; };
+  const fmt = (v) => (v < 0 ? '−' : '') + Math.abs(v).toFixed(3);
+
+  const title = document.createElement('div');
+  title.className = 'chart-title';
+  title.textContent = el.dataset.title;
+  el.appendChild(title);
+
+  const svg = mk('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': el.getAttribute('aria-label') });
+  const axisY = H - 22;
+  spec.ticks.forEach((t) => {
+    svg.appendChild(mk('line', { class: t === 0 ? 'zero' : 'grid', x1: x(t), x2: x(t), y1: T, y2: axisY }));
+    const lab = mk('text', { class: 'tick', x: x(t), y: axisY + 15, 'text-anchor': 'middle' });
+    lab.textContent = t === 0 ? '0' : (t < 0 ? '−' : '') + Math.abs(t);
+    svg.appendChild(lab);
+  });
+  svg.appendChild(mk('line', { class: 'grid', x1: 8, x2: W - R, y1: rowY(4) - rowH / 2 - groupGap / 2, y2: rowY(4) - rowH / 2 - groupGap / 2 }));
+
+  const tip = document.createElement('div');
+  tip.className = 'chart-tip';
+  el.appendChild(tip);
+
+  spec.rows.forEach(([est, cl, cu, p], i) => {
+    const y = rowY(i), sig = p === '<.001' || parseFloat(p) < 0.05;
+    const name = mk('text', { class: 'tick rowlab', x: L - 10, y: y + 4, 'text-anchor': 'end' });
+    name.textContent = FOREST_ROWS[i];
+    svg.appendChild(name);
+    svg.appendChild(mk('line', { class: 'ci' + (sig ? ' sig' : ''), x1: x(cl), x2: x(cu), y1: y, y2: y }));
+    const dot = mk('circle', { class: 'est' + (sig ? ' sig' : ''), cx: x(est), cy: y, r: 5 });
+    svg.appendChild(dot);
+    const hit = mk('rect', { class: 'bar-hit', x: 0, y: y - rowH / 2, width: W, height: rowH });
+    hit.addEventListener('mouseenter', () => {
+      tip.innerHTML = `<b>${FOREST_ROWS[i]}</b><br>${fmt(est)} [${fmt(cl)}, ${fmt(cu)}], p ${p.startsWith('<') ? p : '= ' + p}`;
+      const scale = svg.getBoundingClientRect().width / W;
+      tip.style.left = x(est) * scale + 'px';
+      tip.style.top = title.offsetHeight + 6 + (y - 6) * scale + 'px';
+      tip.classList.add('on');
+    });
+    hit.addEventListener('mouseleave', () => tip.classList.remove('on'));
+    svg.appendChild(hit);
+  });
+  const g1 = mk('text', { class: 'grp', x: 8, y: rowY(0) + 4 }); g1.textContent = 'Location';
+  const g2 = mk('text', { class: 'grp', x: 8, y: rowY(4) + 4 }); g2.textContent = 'Social';
+  svg.appendChild(g1); svg.appendChild(g2);
+  el.appendChild(svg);
+});

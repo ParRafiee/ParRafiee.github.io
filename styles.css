@@ -406,3 +406,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .project-text .project-role { font-size: 15px; margin-top: 16px; }
 .project-role strong { color: var(--text); }
 @media (max-width: 480px) { .findings { grid-template-columns: 1fr; } }
+
+/* Coefficient plots */
+.forest + .forest { margin-top: 22px; }
+.forest .zero { stroke: var(--text-2); stroke-width: 1.2; }
+.forest .ci { stroke: var(--m-fiml); stroke-width: 2; stroke-linecap: round; }
+.forest .ci.sig { stroke: var(--m-bcov); }
+.forest .est { fill: var(--bg-alt); stroke: var(--m-fiml); stroke-width: 2; }
+.forest .est.sig { fill: var(--m-bcov); stroke: var(--m-bcov); }
+.forest .rowlab { fill: var(--text); }
+.forest .grp { fill: var(--text-2); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; font-family: var(--font); }
+.sw-hollow { background: transparent; border: 2px solid var(--m-fiml); width: 10px; height: 10px; box-sizing: border-box; border-radius: 50%; }
